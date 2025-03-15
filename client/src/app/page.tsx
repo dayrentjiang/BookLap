@@ -6,9 +6,13 @@ const BookLapLandingPage = () => {
   const [text, setText] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8000/test")
-      .then((res) => res.json())
-      .then((data) => setText(data.message));
+    try {
+      fetch("http://localhost:8000/venues/my-favorites")
+        .then((res) => res.json())
+        .then((data) => setText(data.message));
+    } catch (error) {
+      console.error(error);
+    }
 
     console.log(text);
   }, []);
